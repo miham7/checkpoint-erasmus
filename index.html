@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz cu 3 întrebări</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .quiz-container {
+      background: white;
+      padding: 30px 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .question, .intro, .success-message {
+      display: none;
+      margin-bottom: 20px;
+    }
+
+    .active {
+      display: block;
+    }
+
+    h1, h2 {
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    p {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px 0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+      width: 100%;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .success-message {
+      font-size: 1.5em;
+      color: green;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div id="intro" class="intro active">
+      <h1>Bine ai venit la cel de-al treilea checkpoint!</h1>
+      <p>Hai să vedem ce oprtunități are Uniunea Europeană pentru noi, tinerii, mai ales</p>
+      <button onclick="startQuiz()">Start</button>
+    </div>
+
+    <div id="q1" class="question">
+      <h2>1. În ce an a fost lansat programul Erasmus?</h2>
+      <button onclick="checkAnswer(1, 'a')">a) 1987</button>
+      <button onclick="checkAnswer(1, 'b')">b) 2000</button>
+      <button onclick="checkAnswer(1, 'c')">c) 1990</button>
+    </div>
+
+    <div id="q2" class="question">
+      <h2>2. Care din variantele de jos reprezintă oportunități pentru tineri?</h2>
+      <button onclick="checkAnswer(2, 'a')">a) studiu</button>
+      <button onclick="checkAnswer(2, 'b')">b) mobilitate de tineret</button>
+      <button onclick="checkAnswer(2, 'c')">c) scriere de proiecte</button>
+      <button onclick="checkAnswer(2, 'd')">d) toate variantele sunt corecte</button>
+      <button onclick="checkAnswer(2, 'e')">e) toate variantele sunt greșite</button>
+    </div>
+
+    <div id="q3" class="question">
+      <h2>3. Care din următoarele este o oportunitate reală pentru tineri oferită prin programul Erasmus+?</h2>
+      <button onclick="checkAnswer(3, 'a')">a) participarea la schimburi de tineri internaționale</button>
+      <button onclick="checkAnswer(3, 'b')">b) obținerea gratuită a permisului de conducere</button>
+      <button onclick="checkAnswer(3, 'c')">c) acces la bilete gratuite pentru statele membre UE</button>
+    </div>
+
+    <div id="success" class="success-message">
+      <h1>🎉 Felicitări! Ai terminat quiz-ul! </h1><br>
+    <p>Trimiteți pe numărul deja salvat 3 siteuri de unde puteți găsi oportunități pentru tineri oferite de UE</p><br>
+      <h5>Pentru a putea porni spre următorul checkpoint trimite și o poză cu toată echipa stând în fața biroului Erasmus+ :D</h5>
+    </div>
+  </div>
+
+  <script>
+    function startQuiz() {
+      document.getElementById('intro').classList.remove('active');
+      document.getElementById('q1').classList.add('active');
+    }
+
+    function checkAnswer(q, answer) {
+      const correct = {1: 'a', 2: 'd', 3: 'a'};
+      if (answer === correct[q]) {
+        document.getElementById('q' + q).classList.remove('active');
+        if (q < 3) {
+          document.getElementById('q' + (q + 1)).classList.add('active');
+        } else {
+          document.getElementById('success').classList.add('active');
+        }
+      } else {
+        alert("Răspuns greșit! Încearcă din nou.");
+      }
+    }
+  </script>
+</body>
+</html>
